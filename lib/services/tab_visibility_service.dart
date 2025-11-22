@@ -10,11 +10,11 @@ class TabVisibilityService {
   Stream<Map<String, bool>> getTabVisibilityStream() {
     return _database.child('tabVisibility').onValue.map((event) {
       if (event.snapshot.value == null) {
-        // Default: all tabs visible
+        // Default: TV tab hidden, others visible
         return {
           'aiHub': true,
           'movies': true,
-          'tv': true,
+          'tv': false,
           'watchlist': true,
           'settings': true,
         };
@@ -24,7 +24,7 @@ class TabVisibilityService {
       return {
         'aiHub': data['aiHub'] ?? true,
         'movies': data['movies'] ?? true,
-        'tv': data['tv'] ?? true,
+        'tv': data['tv'] ?? false,
         'watchlist': data['watchlist'] ?? true,
         'settings': data['settings'] ?? true,
       };
@@ -64,11 +64,11 @@ class TabVisibilityService {
       final snapshot = await _database.child('tabVisibility').get();
 
       if (!snapshot.exists) {
-        // Default: all tabs visible
+        // Default: TV tab hidden, others visible
         return {
           'aiHub': true,
           'movies': true,
-          'tv': true,
+          'tv': false,
           'watchlist': true,
           'settings': true,
         };
@@ -78,16 +78,16 @@ class TabVisibilityService {
       return {
         'aiHub': data['aiHub'] ?? true,
         'movies': data['movies'] ?? true,
-        'tv': data['tv'] ?? true,
+        'tv': data['tv'] ?? false,
         'watchlist': data['watchlist'] ?? true,
         'settings': data['settings'] ?? true,
       };
     } catch (e) {
-      // On error, return all visible
+      // On error, return TV hidden, others visible
       return {
         'aiHub': true,
         'movies': true,
-        'tv': true,
+        'tv': false,
         'watchlist': true,
         'settings': true,
       };
