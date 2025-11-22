@@ -292,12 +292,7 @@ class _GlassNavBar extends ConsumerWidget {
                   isSelected: currentIndex == 1,
                   onTap: () => onTap(1),
                 ),
-                _NavItem(
-                  icon: Icons.tv,
-                  label: 'Series',
-                  isSelected: currentIndex == 2,
-                  onTap: () => onTap(2),
-                ),
+                // Series tab hidden by default - show from Firebase
                 _NavItem(
                   icon: Icons.bookmark,
                   label: 'Watchlist',
