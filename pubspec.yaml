@@ -60,6 +60,7 @@ dependencies:
   # WebView for video playback
   flutter_inappwebview: ^6.1.5
 
+
 dependency_overrides:
   http: 1.4.0
   uuid: ^4.0.0
